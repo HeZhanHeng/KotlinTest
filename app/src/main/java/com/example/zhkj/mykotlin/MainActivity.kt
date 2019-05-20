@@ -26,7 +26,7 @@ import kotlin.math.log
 class MainActivity : AppCompatActivity(),View.OnClickListener,CompoundButton.OnCheckedChangeListener {
    val requestMa:Int=123
    private var itemlist=ArrayList<String>()
-    private var adapter:PlanetListAdapter?=null
+    private var adapter:MyListAdapter?=null
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode==requestMa&&resultCode== Activity.RESULT_OK&&data!=null)
         toast("${data.getStringExtra("phone")}")
@@ -333,11 +333,13 @@ class MainActivity : AppCompatActivity(),View.OnClickListener,CompoundButton.OnC
         }
 //        列表视图
        itemlist.getData()
-        adapter= PlanetListAdapter(itemlist,this)
+        adapter= MyListAdapter(itemlist,this)
         listview.adapter=adapter
         listview.setOnItemClickListener { parent, view, position, id ->
             toast("您点击了$position")
         }
+//        girdview
+        gridview.adapter=adapter
     }
     fun ArrayList<String>.getData(){
         for (i in 1..20){
@@ -349,7 +351,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener,CompoundButton.OnC
 data class MessageInfo(val title:String,val time:String):Parcelable{
 }
 
-    class PlanetListAdapter(val itemlist:ArrayList<String>,var context: Context):BaseAdapter(){
+    class MyListAdapter(val itemlist:ArrayList<String>,var context: Context):BaseAdapter(){
         override fun getCount(): Int {
             return itemlist.size;
         }

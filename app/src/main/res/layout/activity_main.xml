@@ -259,12 +259,18 @@
                 android:layout_height="wrap_content"
                 />
             <!--列表listview-->
-
             <com.example.zhkj.mykotlin.views.MyListView
                 android:id="@+id/listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </com.example.zhkj.mykotlin.views.MyListView>
+            <com.example.zhkj.mykotlin.views.MyGridView
+                android:id="@+id/gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="2"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"></com.example.zhkj.mykotlin.views.MyGridView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
