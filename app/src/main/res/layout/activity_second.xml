@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.zhkj.mykotlin.SecondActivity">
+<TextView
+    android:id="@+id/tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="从第一页传过来的数据："/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_data"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tv"/>
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="序列化数据："
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_data1"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tv1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_data"/>
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回数据给上一页"
+        app:layout_constraintTop_toBottomOf="@+id/tv1"/>
+</android.support.constraint.ConstraintLayout>
