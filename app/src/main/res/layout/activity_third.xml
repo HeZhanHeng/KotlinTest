@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:id="@+id/cl_main"
+    android:layout_height="match_parent"
+    tools:context="com.example.zhkj.mykotlin.ThirdActivity">
+<LinearLayout
+    android:id="@+id/ll_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tl_head"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/rv_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+</android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/btn_snackbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_anchor="@+id/rv_main"
+        app:layout_anchorGravity="center|bottom"
+        android:text="显示简单提示条"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="17sp"
+        />
+    <Button
+        android:id="@+id/btn_floating"
+        app:layout_anchor="@+id/btn_snackbar"
+        app:layout_anchorGravity="center|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="隐藏悬浮按钮"
+        android:textColor="@color/colorPrimary"
+        android:textSize="17sp" />
+</LinearLayout>
+    <!--layout_anchor以哪个为参照物-->
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        app:layout_anchorGravity="right|bottom"
+        app:layout_anchor="@+id/ll_main"/>
+
+</android.support.design.widget.CoordinatorLayout>

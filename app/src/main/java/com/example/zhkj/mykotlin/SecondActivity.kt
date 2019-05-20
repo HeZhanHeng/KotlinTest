@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_second.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class SecondActivity : AppCompatActivity() {
@@ -28,6 +29,9 @@ class SecondActivity : AppCompatActivity() {
             intent.putExtra("phone","18437963029")
             setResult(Activity.RESULT_OK,intent)
             finish()
+        }
+        btn_next.setOnClickListener {
+            startActivity<ThirdActivity>()
         }
     }
 }

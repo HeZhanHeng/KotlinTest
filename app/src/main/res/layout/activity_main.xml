@@ -271,6 +271,17 @@
                 android:numColumns="2"
                 android:verticalSpacing="10dp"
                 android:horizontalSpacing="10dp"></com.example.zhkj.mykotlin.views.MyGridView>
+           <!--加个相对布局防止滑动冲突-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.v7.widget.RecyclerView>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -9,17 +9,22 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CpuUsageInfo
 import android.os.Parcelable
+import android.os.storage.StorageManager
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.*
 import android.text.TextUtils
 import android.text.format.DateUtils
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.*;//加上此引入，不需要findviewbyId,对一些方法进行封装
 import org.jetbrains.anko.*
 import java.util.*
+import java.util.zip.Inflater
 import kotlin.collections.ArrayList
 import kotlin.math.log
 
@@ -27,6 +32,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener,CompoundButton.OnC
    val requestMa:Int=123
    private var itemlist=ArrayList<String>()
     private var adapter:MyListAdapter?=null
+//    recyclerview
+    private var list=ArrayList<String>();
+    private var mAdapter:RecyclerLinearAdapter?=null;
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode==requestMa&&resultCode== Activity.RESULT_OK&&data!=null)
         toast("${data.getStringExtra("phone")}")
@@ -340,7 +348,16 @@ class MainActivity : AppCompatActivity(),View.OnClickListener,CompoundButton.OnC
         }
 //        girdview
         gridview.adapter=adapter
+//        recyclerview
+        list.getData()
+        val recyclerview=findViewById(R.id.recyclerview) as RecyclerView
+//        recyclerview.layoutManager=LinearLayoutManager(this)
+//        recyclerview.layoutManager=GridLayoutManager(this,2)
+        recyclerview.layoutManager=StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
+        mAdapter=RecyclerLinearAdapter(this,list)
+        recyclerview.adapter=mAdapter;
     }
+//
     fun ArrayList<String>.getData(){
         for (i in 1..20){
             this.add("这是第${i}条数据")
@@ -350,7 +367,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener,CompoundButton.OnC
     @Parcelize
 data class MessageInfo(val title:String,val time:String):Parcelable{
 }
-
+//列表、网格适配器
     class MyListAdapter(val itemlist:ArrayList<String>,var context: Context):BaseAdapter(){
         override fun getCount(): Int {
             return itemlist.size;
@@ -382,7 +399,35 @@ class Viewholder(val viewItem:View){
     var str:TextView=viewItem.findViewById(R.id.tv) as TextView
 }
     }
-private fun initSpinner(){
+//    recyclerview适配器
+class RecyclerLinearAdapter(private val context: Context,private val mlist:ArrayList<String>):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    val inflater:LayoutInflater= LayoutInflater.from(context)
+//    点击事件自己写
+
+    //    绑定每项的视图持有者
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val viewholder:ViewHolder=holder as ViewHolder
+       viewholder.tv.text=mlist[position]
+        viewholder.tv.setOnClickListener {
+            Toast.makeText(context,"您点击了"+position,Toast.LENGTH_SHORT).show()
+        }
+    }
+//获得列表项的数目
+    override fun getItemCount(): Int {
+        return mlist.size
+    }
+//创建整个布局的视图持有者
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    val view:View=inflater.inflate(R.layout.activity_main_item,parent,false)
+    return ViewHolder(view)
+    }
+
+    class ViewHolder (itemView:View):RecyclerView.ViewHolder(itemView){
+        val tv:TextView=itemView.findViewById(R.id.tv) as TextView
+    }
+}
+
+    private fun initSpinner(){
     val spinAdapter=ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,starArray);
     spinAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
 //    android 8.0之后findviewbyid后添加View才可进行类型转换操作

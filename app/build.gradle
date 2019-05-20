@@ -20,8 +20,8 @@ android {
         }
     }
 //    @Parcelize标记需要设置
-    androidExtensions{
-        experimental=true;
+    androidExtensions {
+        experimental = true;
     }
 }
 
@@ -34,6 +34,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile "org.jetbrains.anko:anko-common:$anko_version"
+    compile 'com.android.support:recyclerview-v7:27.1.1'
+//    导入协调布局库
+    compile 'com.android.support:design:27.1.1'
 }
 repositories {
     mavenCentral()

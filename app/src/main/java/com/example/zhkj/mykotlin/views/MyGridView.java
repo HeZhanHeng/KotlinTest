@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.GridView;
 
 /**
- * Created by HeZhanHeng on 2019/5/20.
+ * Created by zih on 2019/5/20.
  */
 
 public class MyGridView extends GridView {
